@@ -2,8 +2,9 @@ import { useState } from "react";
 import { logo, menu, close } from "../assets";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { sideVariants, itemVariants } from '../utils/motion'
+import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({GoogleSignout, isAuth}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const controls = useAnimation();
@@ -22,27 +23,34 @@ function Navbar() {
   return (
     <>
        {/* Desktop Navbar */}
-       <nav className="nav-full sticky top-0 flex md:flex justify-between pt-5 z-10 h-5">
+       <nav className="nav-full fixed w-full bg-white/20 backdrop-blur-sm border-10px z-50 ">
         <div className="nav-container flex justify-between w-[75%] mx-auto">
           <div className="">
             <img src={logo} alt="Logo for page" className="" />
           </div>
 
           <ul className="flex justify-around w-[9cm] pt-2 text-[15px]">
-            <li>Home</li>
+            <li> <Link to={'/'}>Home</Link></li>
             <li>Features</li>
-            <li>Pricing</li>
+            <li><Link to={'pricing'}>Pricing</Link></li>
             <li>Blog</li>
           </ul>
 
-          <motion.button
-            onHoverStart={handleHover}
-            onHoverEnd={() => controls.start({ x: 0 })}
-            animate={controls}
-            className="w-[211px] h-[50px] bg-[#ffbd43] text-white rounded-xl text-[17px]"
-          >
-            Login
-          </motion.button>
+          {
+
+        !isAuth?(
+        <Link to={'/login'}>
+        <motion.button
+        onHoverStart={handleHover}
+        onHoverEnd={()=> controls.start({x:0})}
+        animate={controls}
+        className="w-[211px] h-[50px] bg-gradient-to-r from-yellow-600 to-yellow-900  text-white rounded-xl text-[17px]">Login
+        </motion.button></Link>):(
+  <>
+       <button className="w-[211px] h-[50px] bg-[#cf2626] text-white rounded-xl text-[17px]" onClick={GoogleSignout}>Sign out</button>
+  </>
+)
+}
         </div>
       </nav>
 
@@ -92,19 +100,21 @@ function Navbar() {
         animate="open"
         exit="closed"
         variants={sideVariants}
-        className="container md:hidden flex flex-col fixed bg-[#5454D4] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4">
+        className="container md:hidden flex flex-col fixed bg-[#5454D4] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4" >
           <ul className="text-[20px] mr-[-25px] p-5">
-            <motion.li variants={itemVariants} className="mb-6">Home</motion.li>
+            <motion.li variants={itemVariants} className="mb-6"><Link to={'/'}>Home</Link></motion.li>
             <motion.li variants={itemVariants} className="mb-6">Features</motion.li>
-            <motion.li variants={itemVariants} className="mb-6">Pricing</motion.li>
+            <motion.li variants={itemVariants} className="mb-6"><Link to={'pricing'}>Pricing</Link></motion.li>
             <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
           </ul>
+          <Link to={'/login'}>
           <motion.button
             variants={itemVariants}
             className="w-[150px] h-[48px] bg-[#ffbd43] text-white rounded-xl text-[14px] mt-4 mr-[-2.8em]"
           >
             Login
           </motion.button>
+          </Link>
         </motion.div>
         </motion.aside>
       )}

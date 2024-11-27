@@ -28,8 +28,9 @@ function Hero() {
            onHoverStart={handleHover}
            onHoverEnd={() => controls.start({ x: 0 })}
            animate={controls}
-          className='w-[211px] h-[50px] bg-[#ffbd43] text-white rounded-xl text-[17px]'
-          >Get Started</motion.button>
+          className="w-full text-white bg-gradient-to-r from-yellow-600 to-yellow-900 rounded-md py-3 md:py-4 text-center flex items-center justify-center"
+                  >
+          Get Started</motion.button>
 
           <img src={downArrow} alt="navigate to buttom" className='ml-[35px] pb-3 cursor-pointer w-[50px] h-[60px]'/>
           
