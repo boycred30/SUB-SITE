@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import Create from './Pages/Create';
 import Login from './Pages/Login';
 import Pricing from './Pages/Pricing'
+import Blog from './Pages/Blog'
 import { signOut } from "firebase/auth";
 import { auth } from "./Firebase/Firebase";
 import { ToastContainer } from "react-toastify"
@@ -36,8 +37,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth}/>}/>
         <Route path="/create" element={<Create isAuth={isAuth}/>}/>
-        <Route path="/login" element={<Login isAuth={isAuth}/>}/>
+        <Route path="/login" element={<Login IsAuth={isAuth}/>}/>
         <Route path="/pricing" element={<Pricing isAuth={isAuth}/>}/>
+        <Route path="/blog" element={<Blog isAuth={isAuth}/>}/>
       </Routes>
     </>
   )

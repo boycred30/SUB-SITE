@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { sideVariants, itemVariants } from '../utils/motion'
 import { Link } from "react-router-dom";
 
-function Navbar({GoogleSignout, isAuth}) {
+function Navbar({GoogleSignOut, isAuth}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const controls = useAnimation();
@@ -29,11 +29,11 @@ function Navbar({GoogleSignout, isAuth}) {
             <img src={logo} alt="Logo for page" className="" />
           </div>
 
-          <ul className="flex justify-around w-[9cm] pt-2 text-[15px]">
+          <ul className="flex justify-around w-[9cm] pt-2 text-[15px] text-black">
             <li> <Link to={'/'}>Home</Link></li>
             <li>Features</li>
-            <li><Link to={'pricing'}>Pricing</Link></li>
-            <li>Blog</li>
+            <li>Pricing</li>
+            <li><Link to={'blog'}>Blog</Link></li>
           </ul>
 
           {
@@ -47,7 +47,7 @@ function Navbar({GoogleSignout, isAuth}) {
         className="w-[211px] h-[50px] bg-gradient-to-r from-yellow-600 to-yellow-900  text-white rounded-xl text-[17px]">Login
         </motion.button></Link>):(
   <>
-       <button className="w-[211px] h-[50px] bg-[#cf2626] text-white rounded-xl text-[17px]" onClick={GoogleSignout}>Sign out</button>
+       <button className="w-[211px] h-[50px] bg-[#cf2626] text-white rounded-xl text-[17px]" onClick={GoogleSignOut}>Sign out</button>
   </>
 )
 }
@@ -104,8 +104,8 @@ function Navbar({GoogleSignout, isAuth}) {
           <ul className="text-[20px] mr-[-25px] p-5">
             <motion.li variants={itemVariants} className="mb-6"><Link to={'/'}>Home</Link></motion.li>
             <motion.li variants={itemVariants} className="mb-6">Features</motion.li>
-            <motion.li variants={itemVariants} className="mb-6"><Link to={'pricing'}>Pricing</Link></motion.li>
-            <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
+            <motion.li variants={itemVariants} className="mb-6">Pricing</motion.li>
+            <motion.li variants={itemVariants} className="mb-6"><Link to={'blog'}>Blog</Link></motion.li>
           </ul>
           <Link to={'/login'}>
           <motion.button

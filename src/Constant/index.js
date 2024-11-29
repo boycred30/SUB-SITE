@@ -58,7 +58,7 @@ const services = [
 const plans = [
   {
     title: "Standard",
-    price: "₦Free",
+    price: "₦free",
     specs: [
       "1 User",
       "5 GB Hosting",
@@ -68,7 +68,7 @@ const plans = [
   },
   {
     title: "Premium",
-    price: "₦100,000/m",
+    price: "₦10,000/m",
     specs: [
       "Unlimated User",
       "200 GB Hosting",
@@ -78,7 +78,7 @@ const plans = [
   },
   {
     title: "Stander",
-    price: "₦50,000/M",
+    price: "₦5000/M",
     specs: [
       "10 User",
       "50 GB Hosting",

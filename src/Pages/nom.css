@@ -1,0 +1,89 @@
+.App {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .pricing-plans {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .plan-card {
+    border: 2px solid #007bff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .plan-card h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+  
+  .plan-card p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+  }
+  
+  .plan-card button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .plan-card button:hover {
+    background-color: #0056b3;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  

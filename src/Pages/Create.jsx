@@ -79,7 +79,7 @@ const Create = ({ setIsAuth }) => {
         <div className="w-full min-h-screen flex flex-col md:flex-row items-start">
       
           <div className="relative w-full md:w-1/2 h-64 md:h-full flex flex-col">
-            <img src={picture} className="w-full h-full object-cover pic" alt="Signup" />
+            <img src={picture} className="w-full h-full object-cover pic mt-90" alt="Signup" />
           </div>
 
        
