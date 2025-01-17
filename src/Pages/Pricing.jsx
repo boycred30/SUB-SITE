@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // For navigation
 import { getFirestore, collection, addDoc } from "firebase/firestore"; // Firebase Firestore
+import { getAuth } from "firebase/auth"; // Firebase Authentication
 import "./HostingPlans.css"; // Your CSS file
 
 const Pricing = () => {
@@ -11,8 +12,22 @@ const Pricing = () => {
     location: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const db = getFirestore(); // Initialize Firestore
   const navigate = useNavigate(); // Initialize navigate
+
+  // Check if the user is authenticated when the component mounts
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate("/login"); // Redirect to login if the user is not logged in
+      }
+    });
+
+    return () => unsubscribe(); // Clean up the listener on component unmount
+  }, [navigate]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -26,14 +41,16 @@ const Pricing = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(""); // Reset any previous error
 
     try {
       console.log("Form data to be saved:", formData);
 
       // Save to Firestore
       await addDoc(collection(db, "purchases"), {
-        username: formData.username, // Use 'username' here
-        age: parseInt(formData.age, 10), // Ensure age is a number
+        username: formData.username,
+        age: parseInt(formData.age, 10),
         location: formData.location,
         plan: formData.plan,
       });
@@ -42,8 +59,10 @@ const Pricing = () => {
       setFormData({ plan: "free", username: "", age: "", location: "" });
       navigate("/blog");
     } catch (error) {
+      setError("Failed to save your purchase. Please try again.");
       console.error("Error saving purchase data:", error.message);
-      alert("Failed to save your purchase. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -138,10 +157,12 @@ const Pricing = () => {
           <button
             type="submit"
             className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+            disabled={loading}
           >
-            Purchase Plan
+            {loading ? "Processing..." : "Purchase Plan"}
           </button>
         </form>
+        {error && <div className="error-message text-red-500 text-center mt-4">{error}</div>}
       </section>
     </div>
   );
